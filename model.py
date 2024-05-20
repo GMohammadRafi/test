@@ -23,7 +23,6 @@ class TextDataset(torch.utils.data.Dataset):
         self.labels = []
 
         for text in texts:
-            print(text)
             if isinstance(text, str):
                 encodings_dict = tokenizer(text, truncation=True, max_length=max_length, padding="max_length")
                 self.input_ids.append(torch.tensor(encodings_dict['input_ids']))
