@@ -1,8 +1,10 @@
+import json
+
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 import time
 import re
-
+from prepare_data import data
 # Load the model and tokenizer
 model_name = "rhysjones/phi-2-orange-v2"  # 160.97 # 15.00
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -61,6 +63,7 @@ for index, item in enumerate(data):
 
     # Print the index, output, and the elapsed time
     print(f"Time taken {index} : {elapsed_time:.2f} seconds")
+    break
 
 # Write the modified data to test_v2.json
 with open('test_v2.json', 'w') as outfile:
