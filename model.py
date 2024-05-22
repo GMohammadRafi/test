@@ -67,6 +67,7 @@ for index, item in enumerate(data):
 
     # Log the index, output, and the elapsed time
     log_message = f"=====================\nID: {item['_id']}\nTime taken {index} : {elapsed_time:.2f} seconds"
+    print(log_message)
     logging.info(log_message)
 
 # Write the modified data to test_v2.json
