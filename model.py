@@ -1,10 +1,14 @@
 import json
-
+import logging
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 import time
 import re
 from prepare_data import data
+
+# Configure logging
+logging.basicConfig(filename='generation_log.txt', level=logging.INFO, format='%(asctime)s - %(message)s')
+
 # Load the model and tokenizer
 model_name = "rhysjones/phi-2-orange-v2"  # 160.97 # 15.00
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -61,9 +65,9 @@ for index, item in enumerate(data):
     # Calculate the elapsed time
     elapsed_time = end_time - start_time
 
-    # Print the index, output, and the elapsed time
-    print(f"Time taken {index} : {elapsed_time:.2f} seconds")
-    break
+    # Log the index, output, and the elapsed time
+    log_message = f"=====================\nID: {item['_id']}\nTime taken {index} : {elapsed_time:.2f} seconds"
+    logging.info(log_message)
 
 # Write the modified data to test_v2.json
 with open('test_v2.json', 'w') as outfile:
